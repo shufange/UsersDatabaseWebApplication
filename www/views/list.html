@@ -32,11 +32,11 @@
       <td>{{user.SEX==0?'M':'F'}}</td>
       <td>{{user.AGE}}</td>
       <td style="width: 15%" align="left">
-          <a ng-href="#/edit/{{user.ID}}">
-        <button class="btn" >  <!--ng-click="editUser(user.id)"-->
+
+        <button class="btn" ng-click="editUser(user.ID)">  <!--ng-click="editUser(user.id)"-->
           <span class="glyphicon glyphicon-pencil"></span> Edit
         </button>
-          </a>
+
           &nbsp;
         <button class="btn" ng-click="deleteUser(user.ID)">
           <span class="glyphicon glyphicon-remove"></span>

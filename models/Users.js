@@ -38,31 +38,41 @@ Users.prototype.createUser = function(req, done){
     var sq = "'";  var cm = ",";
     var query = "INSERT INTO test.shufan_user VALUE" + "(" + sq+newuser_id+sq + cm + sq+newuser_fname+sq + cm + sq+newuser_lname+sq +
         cm + sq+newuser_sex+sq + cm + sq+newuser_age+sq + ")";
-    console.log(' query is: ' + query);
+    //console.log(' query is: ' + query);
     this.query(req, query, done);
 }
 
 //Edit/Update user info
 Users.prototype.editUser = function(req, done) {
+
     var edituser = typeof req.body.edituser !== 'undefined' && req.body.edituser !== '' ? req.body.edituser : null;
+    //console.log(edituser);
+    if(edituser==null) return;
+    var fields =[];
+    fields[0] = typeof edituser.ID !== 'undefined' ? edituser.ID : '';
+    fields[1] = typeof edituser.FIRST_NAME !== 'undefined'? edituser.FIRST_NAME : '';
+    fields[2] = typeof edituser.LAST_NAME !== 'undefined'? edituser.LAST_NAME : '';
+    fields[3] = typeof edituser.SEX !== 'undefined'? edituser.SEX : 'M';
+    fields[4] = typeof edituser.AGE !== 'undefined'? edituser.AGE : '';
 
-    var newuser_id = newuser != null ? newuser.ID : '';
-    var newuser_fname = newuser != null ? newuser.FIRST_NAME : '';
-    var newuser_lname = newuser != null ? newuser.LAST_NAME : '';
-    var newuser_sex = newuser != null ? newuser.SEX : 'M';
-    var newuser_age = newuser != null ? newuser.AGE : '';
+    var qstring = [];
 
-    if (newuser_id != '') {
+        if(fields[1] != '') qstring.splice(0,0,  "FIRST_NAME = " + "'" + fields[1] + "'");
+        if(fields[2] != '') qstring.splice(0,0, "LAST_NAME = " + "'" + fields[2] + "'");
+        if(fields[3] != '') qstring.splice(0,0, "SEX = " + "'" + fields[3] + "'");
+        if(fields[4] != '')qstring.splice(0,0, "AGE = " + "'" + fields[4] + "'");
+
         //build query string
-        var query = "UPDATE shufan_user SET " +
-        newuser_fname == '' ? "FIRST_NAME = " + newuser_fname : "" +
-        newuser_lname == '' ? "LAST_NAME = " + newuser_lname : "" +
-        newuser_sex == '' ? "SEX = " + newuser_sex : "" +
-        newuser_age == '' ? "AGE = " + newuser_age : "" +
-            " where ID = " + newuser_id;
+        var query = "UPDATE test.shufan_user SET ";
 
+        for(var i = 0;i<qstring.length;i++){
+            query+=qstring[i]+ (i==qstring.length-1? "":",");
+
+        }
+        query += " WHERE ID = " + fields[0];
+        //console.log("query:" + query);
         this.query(req, query, done);
-    }
+
 }
 
 

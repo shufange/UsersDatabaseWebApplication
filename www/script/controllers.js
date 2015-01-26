@@ -6,7 +6,7 @@ var controllers = angular.module('controllers' , ['services']);
 controllers.controller('ListController', function ($scope, $http, getUserListService) {
 
     //get user list from database in mysql
-    getUserListService.getUserList($http, $scope, '');
+    getUserListService.getUserList($http,$scope, '');
 
     $scope.sort = '-id';
 
@@ -15,6 +15,10 @@ controllers.controller('ListController', function ($scope, $http, getUserListSer
         $scope.sort = s;
     };
 
+    //edit user routing  ng-href="#/edit/{{user.ID}}"
+    $scope.editUser = function(id){
+        window.location.href = "#/edit/"+id;
+    }
 
     //delete user function
     $scope.deleteUser = function(id){
@@ -25,6 +29,8 @@ controllers.controller('ListController', function ($scope, $http, getUserListSer
             });
 
     };
+
+
 
 })
 
@@ -47,21 +53,27 @@ controllers.controller('ListController', function ($scope, $http, getUserListSer
         }
     }])
 
-.controller('EditController', function EditController($scope, $http, $routeParams, getUserListService, editUserService) {
+.controller('EditController', function EditController($scope, $http, $routeParams, getUserListService) {
 
         $scope.user = getUserListService.getUserList($http, $scope, $routeParams.id);
 
         $scope.EditUserController = function()  {
             var edituser = {
-                ID: '',
+                ID: $routeParams.id,
                 FIRST_NAME: $scope.fName,
                 LAST_NAME: $scope.lName,
                 SEX: (typeof $scope.SexM === 'undefined')? '1':'0',
                 AGE: $scope.Age
             };
-            editUserService.editUser(edituser);
 
-            window.location.href = "/";
+            //editUserService.editUser(edituser);
+            $http.post('/service/user/edituser/', {edituser: edituser})
+                .success(function(data) {
+                    //console.log("success");
+                    $scope.user = getUserListService.getUserList($http, $scope, $routeParams.id);;
+                });
+
+            //window.location.href = "/";
         }
 
     });

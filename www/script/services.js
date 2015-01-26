@@ -17,21 +17,8 @@ services.service('getUserListService',
         }
 
     }
-)
-
-
-.service('editUserService',
-        function() {
-            return {
-                editUser : function($http, $scope, edituser) {
-                $http.post('/service/user/edituser', {edituser: edituser})
-                    .success(function(data) {
-                        //console.log(data);
-                        $scope.users = data;
-                    });
-                }
-            }
-
-        }
 );
+
+
+
 

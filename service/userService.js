@@ -8,7 +8,6 @@ var Users = require('../models/Users.js');
 router.get('/', function(req, res, next) {
     Users.getUserList(req, function(result) {
         res.send(result);
-        console.log(result);
     });
 });
 

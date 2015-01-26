@@ -1,3 +1,4 @@
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in users">
+    <tr ng-repeat="user in users">  <!--  ng-repeat="user" -->
       
       <td>{{user.FIRST_NAME}}</td>
       <td>{{user.LAST_NAME}}</td>
@@ -22,31 +23,32 @@
   </tbody>
 </table>
 
-
-<h3 >Edit User:</h3>
 <form class="form-horizontal">
+<h3 >Edit User:</h3>
+
+
   <div class="form-group">
     <label class="col-sm-2 control-label">First Name:</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="fName"  placeholder={{user.FIRST_NAME}}>
+    <input type="text" ng-model="fName"  placeholder={{users[0].FIRST_NAME}}>
     </div>
   </div> 
     <div class="form-group">
     <label class="col-sm-2 control-label">Last Name:</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="lName"  placeholder={{user.LAST_NAME}}>
+    <input type="text" ng-model="lName"  placeholder={{users[0].LAST_NAME}}>
     </div>
   </div>
     <div class="form-group">
     <label class="col-sm-2 control-label">Sex:</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="Sex"  placeholder={{user.SEX}}>
+    <input type="text" ng-model="Sex"  placeholder={{users[0].SEX}}>
     </div>
   </div>
     <div class="form-group">
     <label class="col-sm-2 control-label">Age:</label>
     <div class="col-sm-10">
-    <input type="text" ng-model="Age"  placeholder={{user.AGE}}>
+    <input type="text" ng-model="Age"  placeholder={{users[0].AGE}}>
     </div>
   </div>
   
@@ -60,8 +62,8 @@
       </div>
       <div  class="col-sm-2" >
           <a ng-href='#/'>
-            <button style="width: 70%" class="btn btn-success"  >
-                Cancel
+            <button style="width: 70%" class="btn btn-success">
+                Back
             </button>
           </a>
       </div>

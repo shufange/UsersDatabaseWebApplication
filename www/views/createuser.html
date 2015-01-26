@@ -36,9 +36,9 @@
   </div>
   
     
-    <a ng-click="CreateUserController()" ng-disabled=" myForm.firstName.$dirty && myForm.firstName.$invalid ||  (myForm.lastName.$dirty && myForm.lastName.$invalid) || (myForm.Age.$dirty && myForm.Age.$invalid)">
+
     <div class="col-md-2">      
-        <button class="btn btn-success" >
+        <button class="btn btn-success"  data-ng-disabled="!myForm.$valid" ng-click="CreateUserController()" >
             <span class="glyphicon glyphicon-user"></span> 
             Create New User
         </button>
@@ -46,11 +46,10 @@
     <div class="col-md-2">
         <a ng-href='#/'>
         <button  style="width: 100%;" class="btn btn-success"  >
-            Cancel
+            Back
         </button>
         </a>
     </div> 
 
-</a>
 </form>
 
