@@ -1,0 +1,6 @@
+READ ME
+
+To do list:
+
+1. Create User form validation
+2. mysql database error handling

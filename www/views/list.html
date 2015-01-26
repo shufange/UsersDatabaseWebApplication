@@ -1,0 +1,59 @@
+
+<div class="col-sm-12" align="right">
+<div class="btn-group">
+        <button type="button" class="btn btn-default">Sort By</button>
+        <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a ng-click="sortBy('FIRST_NAME')">First Name</a></li>
+            <li><a ng-click="sortBy('LAST_NAME')">Last Name</a></li>
+            <li><a ng-click="sortBy('AGE')">Age</a></li>
+        </ul>
+</div>
+</div>
+
+
+<div class="container" align="center">  
+    
+        <table class="table table-striped">
+        <thead>
+    <tr>     
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>Modify</th>
+    </tr>
+        </thead>
+        <tbody>
+    <tr ng-repeat="user in users | filter: search| orderBy: sort">
+      
+      <td>{{user.FIRST_NAME}}</td>
+      <td>{{user.LAST_NAME}}</td>
+      <td>{{user.SEX==0?'M':'F'}}</td>
+      <td>{{user.AGE}}</td>
+      <td style="width: 15%" align="left">
+          <a ng-href="#/edit/{{user.ID}}">
+        <button class="btn" >  <!--ng-click="editUser(user.id)"-->
+          <span class="glyphicon glyphicon-pencil"></span> Edit
+        </button>
+          </a>
+          &nbsp;
+        <button class="btn" ng-click="deleteUser(user.ID)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button> 
+      </td>  
+    </tr>
+    
+        </tbody>
+        </table>
+    
+    
+</div>    
+    
+<hr>
+<a ng-href="#/newuser">
+<button class="btn btn-success" >
+<span class="glyphicon glyphicon-user"></span> Create New User
+</button>
+</a>
+<hr>

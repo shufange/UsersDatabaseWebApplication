@@ -1,0 +1,69 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      
+      <td>{{user.FIRST_NAME}}</td>
+      <td>{{user.LAST_NAME}}</td>
+      <td>{{user.SEX==0?'M':'F'}}</td>
+      <td>{{user.AGE}}</td>
+        
+    </tr>
+    
+  </tbody>
+</table>
+
+
+<h3 >Edit User:</h3>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">First Name:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="fName"  placeholder={{user.FIRST_NAME}}>
+    </div>
+  </div> 
+    <div class="form-group">
+    <label class="col-sm-2 control-label">Last Name:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="lName"  placeholder={{user.LAST_NAME}}>
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="col-sm-2 control-label">Sex:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="Sex"  placeholder={{user.SEX}}>
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="col-sm-2 control-label">Age:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="Age"  placeholder={{user.AGE}}>
+    </div>
+  </div>
+  
+</form>
+
+<div class="form-group" >
+      <div class="col-sm-2" >
+        <button style="width: 70%" class="btn btn-success" ng-click="EditUserController()" >
+          <span class="glyphicon glyphicon-save"></span> Save
+        </button>
+      </div>
+      <div  class="col-sm-2" >
+          <a ng-href='#/'>
+            <button style="width: 70%" class="btn btn-success"  >
+                Cancel
+            </button>
+          </a>
+      </div>
+    </div>
+  </div>
